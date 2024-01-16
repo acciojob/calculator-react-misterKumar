@@ -1,12 +1,52 @@
-h1 {
-    color: #27aedb;
+.grid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: #71756e;
     text-align: center;
-    }
+}
+.grid div{
+    padding:10px;
+    padding-top:20px;   
+    font-size: 20px;
+    border-bottom: 1px solid black;
+    border-left:1px solid black;
     
+}
 
 button{
-    color: #27aedb;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+    background-color: #71756e;
+    border:none;
+    border-bottom: 1px solid black;
+    border-left:1px solid black;
+}
+.dot{
+    border-right:1px solid black;
+    
+}
+.output{
+    width:99%;
+    background-color: #212230;
+    height:30px;
+    outline: none;
+    display: flex;
+    text-align: end;
+    color:cyan;
+    font-size: 20px;
+    
+}
+.calculator{
+    width:30%;
+    margin:0 auto;
+    position: absolute;
+    top: 20%;
+    left:30%;    
+    
+}
+
+.add,
+.equals {
+  grid-row: span 2; /* This will make + and = buttons take 2 rows */
+}
+#root{
+    height:98vh;
 }
