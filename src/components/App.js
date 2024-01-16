@@ -1,52 +1,46 @@
-import React, { useState } from "react";
+
+import React, { useState } from 'react'
 import '../styles/App.css';
+import Button from './Button';
 
+const App = () => {
 
-
-const App=()=>{
-    let [number,setNumber]=useState('');
-
-    function handleClick(event){
-        if(event.target.innerText=='C'){
-            setNumber('')
-        }else if(event.target.innerText=='='){
-            setNumber(eval(number))
-        }
-        else{
-            setNumber(number+event.target.innerText)
-        }
+    const data = ["C", "/", "*", "-", "7", "8", "9", "+", "4", "5", "6", "1", "2", "3", "=", "0", ".", ""]
+    let [exp, setExp] = useState("");
+    
+    function handleClick(id) {
+        if (id === "=") {
+            try {
+                console.log(eval(exp));
+                if (eval(exp)!="undefined") {
+                    setExp(eval(exp))
+                }
+            }catch (error) {
+                setExp("Error");
+              }
+           
+           
+        } else if (id=="C") {
+            setExp("");
+        } else {
+            setExp(() => exp + id);
+        }    
     }
 
-    function calculate(){
-
-
-
-    }
-
+    console.log(exp);
     return (
-        <div className="Calculator">
-           <input type="text" className="output" value={number} />
-           <div className="grid">
-            <div id='btn-C' onClick={handleClick}>C</div>
-            <div id='btn-/'  onClick={handleClick}>/</div>
-            <div id='btn-*'  onClick={handleClick}>*</div>
-            <div id='btn--'  onClick={handleClick}>-</div>
-            <div id='btn-7'  onClick={handleClick}>7</div>
-            <div id='btn-8'  onClick={handleClick}>8</div>
-            <div id='btn-9'  onClick={handleClick}>9</div>
-            <button id='plus'   onClick={handleClick} className="add">+</button>
-            <div id='btn-4'  onClick={handleClick}>4</div>
-            <div id='btn-5'  onClick={handleClick}>5</div>
-            <div id='btn-6'  onClick={handleClick}>6</div>
-            <div id='btn-1'  onClick={handleClick}>1</div>
-            <div id='btn-2'  onClick={handleClick}>2</div>
-            <div id='btn-3'  onClick={handleClick}>3</div>
-            <button id='equal'  onClick={handleClick} className="equals">=</button>
-            <div  id='btn-0'  onClick={handleClick}>0</div>
-            <div id='btn-.'   onClick={handleClick} className="dot">.</div>
-           </div>
+        <div className='container Calculator'>
+            <div className='expression' id="calci">{exp}</div>
+            <div className="button-container">
+                {data.map((key) => (
+                    <Button key={key} id={key}  handleClick={handleClick}></Button>
+                ))}
+            </div>
         </div>
+
+
     )
 }
 
-export default App
+
+export default App;
